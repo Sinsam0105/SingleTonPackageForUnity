@@ -12,7 +12,7 @@ namespace Sinsam.SingletonSystem
         public IReadOnlyList<GameObject> Prefabs => prefabs;
 
 #if UNITY_EDITOR
-        internal void SetPrefabs(IEnumerable<GameObject> singletonPrefabs)
+        public void SetPrefabs(IEnumerable<GameObject> singletonPrefabs)
         {
             prefabs.Clear();
             prefabs.AddRange(singletonPrefabs);
