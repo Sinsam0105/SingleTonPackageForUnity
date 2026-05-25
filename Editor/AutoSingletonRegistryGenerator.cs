@@ -57,7 +57,7 @@ namespace Sinsam.SingletonSystem.Editor
         {
             EditorApplication.delayCall += () =>
             {
-                if (Application.isPlayingOrWillChangePlaymode)
+                if (EditorApplication.isPlayingOrWillChangePlaymode)
                 {
                     return;
                 }
