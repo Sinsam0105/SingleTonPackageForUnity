@@ -1,8 +1,11 @@
 {
-  "name": "com.postech.singleton-system",
+  "name": "com.sinsam.singleton-system",
   "version": "1.0.0",
   "displayName": "Singleton System",
   "description": "A lightweight Unity singleton utility package with MonoSingleton, plain Singleton, auto singleton registry, and runtime bootstrap support.",
   "unity": "2022.3",
+    "author": {
+    "name": "Sinsam"
+  },
   "dependencies": {}
 }
