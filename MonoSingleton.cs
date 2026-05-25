@@ -93,9 +93,5 @@ public abstract class MonoSingleton<T> : MonoBehaviour where T : MonoSingleton<T
 
     protected virtual void OnDestroy()
     {
-        if (_instance == this)
-        {
-            _applicationIsQuitting = true;
-        }
     }
 }
