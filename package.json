@@ -1,11 +1,17 @@
 {
   "name": "com.sinsam.singleton-system",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "displayName": "Singleton System",
-  "description": "A lightweight Unity singleton utility package with MonoSingleton, plain Singleton, auto singleton registry, and runtime bootstrap support.",
+  "description": "A Unity singleton utility package with MonoSingleton, plain Singleton, attribute-driven auto singleton prefab generation, registry generation, and runtime bootstrap support.",
   "unity": "2022.3",
-    "author": {
+  "author": {
     "name": "Sinsam"
   },
+  "keywords": [
+    "singleton",
+    "unity",
+    "runtime",
+    "editor"
+  ],
   "dependencies": {}
 }
