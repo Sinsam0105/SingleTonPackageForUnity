@@ -1,8 +1,8 @@
 {
-  "name": "SingletonSystem",
-  "rootNamespace": "",
-  "references": [],
-  "includePlatforms": [],
+  "name": "Sinsam.SingletonSystem.Editor",
+  "rootNamespace": "Sinsam.SingletonSystem.Editor",
+  "references": ["Sinsam.SingletonSystem.Runtime"],
+  "includePlatforms": ["Editor"],
   "excludePlatforms": [],
   "allowUnsafeCode": false,
   "overrideReferences": false,
