@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Object = UnityEngine.Object;
 
 namespace Sinsam.SingletonSystem
@@ -8,6 +9,19 @@ namespace Sinsam.SingletonSystem
     {
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         private static void InitializeAutoSingletons()
+        {
+            SceneManager.sceneLoaded -= HandleSceneLoaded;
+            SceneManager.sceneLoaded += HandleSceneLoaded;
+
+            CreateSingletonsForScene(SceneManager.GetActiveScene());
+        }
+
+        private static void HandleSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            CreateSingletonsForScene(scene);
+        }
+
+        private static void CreateSingletonsForScene(Scene scene)
         {
             var registry = Resources.Load<SingletonRegistry>(SingletonSettings.RegistryResourcePath);
 
@@ -24,20 +38,25 @@ namespace Sinsam.SingletonSystem
                     continue;
                 }
 
-                CreateSingletonInstance(prefab);
+                var singletonType = GetAutoSingletonType(prefab);
+
+                if (singletonType == null)
+                {
+                    SingletonLogger.Warning($"[AutoSingleton] '{prefab.name}' does not contain a valid AutoSingleton MonoSingleton component.");
+                    continue;
+                }
+
+                if (!registry.IsSceneAllowed(singletonType, scene))
+                {
+                    continue;
+                }
+
+                CreateSingletonInstance(prefab, singletonType);
             }
         }
 
-        private static void CreateSingletonInstance(GameObject prefab)
+        private static void CreateSingletonInstance(GameObject prefab, Type singletonType)
         {
-            var singletonType = GetAutoSingletonType(prefab);
-
-            if (singletonType == null)
-            {
-                SingletonLogger.Warning($"[AutoSingleton] '{prefab.name}' does not contain a valid AutoSingleton MonoSingleton component.");
-                return;
-            }
-
             if (Object.FindFirstObjectByType(singletonType) != null)
             {
                 return;
